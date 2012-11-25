@@ -6,9 +6,11 @@ class UsersController < ApplicationController
   	@user = User.new
   end
   def show
+
     if signed_in?
       @user = User.find(params[:id])
       @microposts = @user.microposts.paginate(page: params[:page])
+      @us = @user.toys
     else
       redirect_to root_path
     end

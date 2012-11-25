@@ -18,3 +18,13 @@
     <% end %>
   </div>
 </div>
+<div class="row">
+  <div class="span6 offset3">
+    <% if @us.size > 0 %>
+      The toys this user is a part of are </br>
+      <% @us.all.each do |ti| %>
+        <%= ti.name %></br>
+      <% end %>
+    <% end %>
+  </div>
+</div>

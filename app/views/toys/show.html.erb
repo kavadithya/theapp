@@ -1,13 +1,23 @@
-<%= @toy.name %> created by <%= @toy.owner.name %>
+
 
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@u) do |f| %>
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.submit "Add User", class: "btn btn-large btn-primary" %>
-    <% end %>
+    <%= form_tag url_for(), :method => 'get'  do %>
+  		<%= label_tag(:q, "Search for:") %>
+  		<%= text_field_tag :search, params[:search] %>
+  		<%= submit_tag("Search") %>
+	<% end %>
   </div>
 </div>
 
+
+<div class="row">
+  <div class="span6 offset3">
+  	<% if @ts.size > 0 %>
+  		The users who are part of this toy are </br>
+  		<% @ts.all.each do |ti| %>
+  			<%= ti.name %></br>
+  		<% end %>
+  	<% end %>
+  </div>
+</div>
