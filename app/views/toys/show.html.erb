@@ -1,0 +1,13 @@
+<%= @toy.name %> created by <%= @toy.owner.name %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@u) do |f| %>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.submit "Add User", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

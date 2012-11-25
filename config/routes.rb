@@ -1,5 +1,9 @@
 App::Application.routes.draw do
   
+  get "toys/main"
+
+ # get "toys/show"
+  resources :toys
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   root to: "static_pages#home"

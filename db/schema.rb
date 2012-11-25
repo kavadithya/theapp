@@ -11,15 +11,56 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122140319) do
+ActiveRecord::Schema.define(:version => 20121125124601) do
+
+  create_table "exps", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "owner"
+  end
+
+  create_table "exps_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "exp_id"
+  end
+
+  create_table "relationship1s", :force => true do |t|
+    t.integer  "expid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationship1s", ["expid"], :name => "index_relationship1s_on_expid", :unique => true
+
+  create_table "relationship2s", :force => true do |t|
+    t.integer  "userid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationship2s", ["userid"], :name => "index_relationship2s_on_userid", :unique => true
+
+  create_table "toys", :force => true do |t|
+    t.string   "name"
+    t.string   "owner"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "toys_users", :id => false, :force => true do |t|
+    t.integer "toy_id"
+    t.integer "user_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.boolean  "admin",           :default => false
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
